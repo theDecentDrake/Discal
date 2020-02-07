@@ -26,7 +26,7 @@ export class Calculator extends React.Component {
 
     let sum1 = 0;
     //console.log(this.state)
-    this.state.costs.map((x) => sum1 += parseInt(x))
+    this.state.costs.forEach((x) => sum1 += x ? parseInt(x) : 0)
 
     //console.log(sum1);
 
@@ -35,15 +35,17 @@ export class Calculator extends React.Component {
     }
 
     var discountedPrice = (parseInt(sum1) - parseInt(this.state.discount || 0)) + parseInt(this.state.tax || 0);//100 - 30 = 70
-
+    console.log(discountedPrice)
     // let costPercent;
     // let netCost;
     let effectiveCosts = this.state.costs.map(function (el, index) {
 
-      let costPercent = (parseInt(el) / parseInt(sum1)) * 100
-      let netCost = (parseInt(costPercent) / 100) * parseInt(discountedPrice)
+      let costPercent = (el / sum1) * 100
+      console.log(Math.round(costPercent))
+      let netCost = (costPercent / 100) * discountedPrice
+      console.log(Math.round(netCost))
 
-      return netCost
+      return Math.round(netCost)
     });
 
     this.setState({
@@ -57,22 +59,24 @@ export class Calculator extends React.Component {
       {
         discount: e.target.value
       },
-      () => { this.calculate(); }
+      () => { this.calculate(); console.log(this.state.discount) }
     )
+
   }
   handleTax = (e) => {
     this.setState(
       {
         tax: e.target.value
       },
-      () => { this.calculate(); }
+      () => { this.calculate(); console.log(this.state.tax) }
     )
+
   }
 
 
   addClick1() {
     this.setState(
-      { costs: [...this.state.costs, ""] }
+      { costs: [...this.state.costs, ''] }
     )
   }
   handleChange1(e, index) {
@@ -82,7 +86,7 @@ export class Calculator extends React.Component {
     )
 
   }
-  handleRemove1(index) {
+  handleRemove1(e, index) {
     this.state.costs.splice(index, 1)
 
     console.log(this.state.costs, "$$$$");
@@ -111,11 +115,11 @@ export class Calculator extends React.Component {
 
                   return (
                     <Row key={index} bottom='xs'>
-                      <Col xs={8}><input placeholder={'Item' + " " + (index + 1)} onChange={(e) => this.handleChange1(e, index)} value={cost} className='calcInput' /></Col>
+                      <Col xs={8}><input type="number" placeholder={'Item' + " " + (index + 1)} onChange={(e) => this.handleChange1(e, index)} value={cost} className='calcInput' /></Col>
                       <Col xs={4}>
                         {(this.state.costs.length === 1)
                           ? <button disabled={true} onClick={(e) => this.handleRemove1(e)} className='deleteButtons disabledButtons' >Delete</button>
-                          : <button onClick={(e) => this.handleRemove1(e)} className='deleteButtons' >Delete</button>}
+                          : <button onClick={(e) => this.handleRemove1(e, index)} className='deleteButtons' >Delete</button>}
                       </Col>
                     </Row>
                   )
@@ -132,7 +136,7 @@ export class Calculator extends React.Component {
                 <Col xs={12}><h2 className='columnFont'>Effective Price</h2></Col>
               </Row>
               {
-                this.state.newCosts.map((cost, index) => {
+                newCosts.map((cost, index) => {
                   return (
                     <Row key={index}>
                       <Col xs={8}><h1 className='calcInput columnFont'>{cost || ('Item' + " " + (index + 1))}</h1></Col>
