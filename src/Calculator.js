@@ -104,7 +104,9 @@ export class Calculator extends React.Component {
         <Grid>
           <Row>
             <Col xs={12}>
-              <h1 style={{ fontFamily: 'Open Sans', fontSize: '48px', fontWeight: 'bold' }}>Discal</h1>
+              <h1 style={{ fontFamily: 'Open Sans', fontSize: '48px', fontWeight: 'bold' }}>Discal
+              <span style={{ fontFamily: 'Open Sans', fontSize: '15px', fontWeight: 'normal', fontStyle: 'italic', color: 'green', marginLeft: '10px' }}>Helps to find the discounted price</span>
+              </h1>
             </Col>
             <Col xs={6} className='verticalLine'>
               <Row>
@@ -115,7 +117,8 @@ export class Calculator extends React.Component {
 
                   return (
                     <Row key={index} bottom='xs'>
-                      <Col xs={8}><input type="number" placeholder={'Item' + " " + (index + 1)} onChange={(e) => this.handleChange1(e, index)} value={cost} className='calcInput' /></Col>
+                      <Col xs={4}><input type="text" placeholder={'Item Name'} className='calcInput' /></Col>
+                      <Col xs={4}><input type="number" placeholder={'Enter Amount:'} size="20" onChange={(e) => this.handleChange1(e, index)} value={cost} className='calcInput rupee' /></Col>
                       <Col xs={4}>
                         {(this.state.costs.length === 1)
                           ? <button disabled={true} onClick={(e) => this.handleRemove1(e)} className='deleteButtons disabledButtons' >Delete</button>
@@ -127,8 +130,9 @@ export class Calculator extends React.Component {
                 )
               }
               <Row>
-                <Col xs={4}><button onClick={(e) => this.addClick1(e)} className='addNewButtons' >Add More</button></Col>
-                <Col xs={8}></Col>
+                <Col xs={3}><button onClick={(e) => this.addClick1(e)} className='addNewButtons' >Add More</button></Col>
+                <Col xs={5}><p style={{textAlign: 'left', fontSize: '30px', fontWeight: 'bold'}}>Total Amount:</p></Col>
+                <Col xs={4}><h1 name='total' className='calcInput columnFont totalRupee'>{parseInt(this.state.costs) && parseInt(this.state.costs.map(x => sum1 += x ? parseInt(x) : 0)) && parseInt(sum1) || 0}</h1></Col>
               </Row>
             </Col>
             <Col xs={5} xsOffset={1}>
@@ -139,7 +143,7 @@ export class Calculator extends React.Component {
                 newCosts.map((cost, index) => {
                   return (
                     <Row key={index}>
-                      <Col xs={8}><h1 className='calcInput columnFont'>{cost || ('Item' + " " + (index + 1))}</h1></Col>
+                      <Col xs={8}><h1 name='effectivePrice' className='calcInput columnFont effectivePrice'>{cost || 0}</h1></Col>
                       <Col xs={4}></Col>
                     </Row>
                   )
@@ -148,14 +152,15 @@ export class Calculator extends React.Component {
             </Col>
             <Col xs={12}>
               <Row>
-                <Col xs={6}>
-                  <Col xs={12}><h2 className='columnFont'>Total Discount</h2></Col>
-                  <Col xs={6}><input placeholder='Enter Discount' type="text" value={this.state.discount} name="discount" onChange={this.handleDiscount} className='discountInput' /></Col>
-
-                </Col>
-                <Col xs={5} xsOffset={1}>
-                  <Col xs={12}><h2 className='columnFont'>Total Tax</h2></Col>
-                  <Col xs={6}><input placeholder='Enter Tax' type="text" value={this.state.tax} name="tax" onChange={this.handleTax} className='taxInput' /></Col>
+                <Col xs={12}>
+                 <Row>
+                  <Col xs={3}><h2 className='columnFont'>Total Discount:</h2></Col>
+                  <Col xs={3}><input type="number" placeholder='Enter Discount Amount' value={this.state.discount} name="discount" onChange={this.handleDiscount} className='discountInput rupee' /></Col>
+                </Row>
+                <Row>
+                  <Col xs={3}><h2 className='columnFont'>Total Tax:</h2></Col>
+                  <Col xs={3}><input type="number" placeholder='Enter Tax Amount' value={this.state.tax} name="tax" onChange={this.handleTax} className='taxInput rupee' /></Col>
+                </Row>
                 </Col>
               </Row>
             </Col>
