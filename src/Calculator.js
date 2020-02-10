@@ -98,6 +98,7 @@ export class Calculator extends React.Component {
 
   render() {
     let sum1 = 0;
+    let sum2 = 0;
     let newCosts = this.state.newCosts;
     return (
       <div>
@@ -131,7 +132,7 @@ export class Calculator extends React.Component {
               }
               <Row>
                 <Col xs={3}><button onClick={(e) => this.addClick1(e)} className='addNewButtons' >Add More</button></Col>
-                <Col xs={5}><p style={{textAlign: 'left', fontSize: '30px', fontWeight: 'bold'}}>Total Amount:</p></Col>
+                <Col xs={5}><p style={{textAlign: 'left', fontSize: '30px', fontWeight: 'bold', marginTop: '60px'}}>Total Amount:</p></Col>
                 <Col xs={4}><h1 name='total' className='calcInput columnFont totalRupee'>{parseInt(this.state.costs) && parseInt(this.state.costs.map(x => sum1 += x ? parseInt(x) : 0)) && parseInt(sum1) || 0}</h1></Col>
               </Row>
             </Col>
@@ -143,12 +144,15 @@ export class Calculator extends React.Component {
                 newCosts.map((cost, index) => {
                   return (
                     <Row key={index}>
-                      <Col xs={8}><h1 name='effectivePrice' className='calcInput columnFont effectivePrice'>{cost || 0}</h1></Col>
-                      <Col xs={4}></Col>
+                      <Col xs={8}><h1 name='effectivePrice' className='calcInput columnFont effectivePrice'>{parseFloat(cost) || 0}</h1></Col>
                     </Row>
                   )
                 })
               }
+              <Row>
+                <Col xs={8}><p style={{textAlign: 'left', fontSize: '30px', fontWeight: 'bold', marginTop: '35px'}}>Total Effective Price:</p></Col>
+                <Col xs={4}><h1 name='total' className='calcInput columnFont effectivePrice'>{parseInt(newCosts) && parseInt(newCosts.map(x => sum2 += x ? parseInt(x) : 0)) && parseInt(sum2) || 0}</h1></Col>
+              </Row>
             </Col>
             <Col xs={12}>
               <Row>
@@ -160,6 +164,10 @@ export class Calculator extends React.Component {
                 <Row>
                   <Col xs={3}><h2 className='columnFont'>Total Tax:</h2></Col>
                   <Col xs={3}><input type="number" placeholder='Enter Tax Amount' value={this.state.tax} name="tax" onChange={this.handleTax} className='taxInput rupee' /></Col>
+                </Row>
+                <Row>
+                  <Col xs={3}><h2 style={{textAlign: 'left', fontSize: '30px', fontWeight: 'bold', marginTop: '35px'}}>Total Amount Paid:</h2></Col>
+                  <Col xs={3}><h1 name='discountedPrice' className='calcInput columnFont discountedPrice'>{(parseInt(sum1) - parseInt(this.state.discount || 0)) + parseInt(this.state.tax || 0)}</h1></Col>
                 </Row>
                 </Col>
               </Row>

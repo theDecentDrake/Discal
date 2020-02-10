@@ -22,7 +22,7 @@ input[type=number].rupee {
   background-position: 8px 18px;
 }
 
-h1[name=total].totalRupee, h1[name=effectivePrice].effectivePrice{
+h1[name=total].totalRupee{
   background-image: url(http://i.imgur.com/Fd7NROx.png);
   padding: 5px;
   text-align: left;
@@ -30,6 +30,29 @@ h1[name=total].totalRupee, h1[name=effectivePrice].effectivePrice{
   background-size: 14px 16px;
   background-repeat: no-repeat;
   background-position: 8px 12px;
+  margin-top: 45px;
+}
+
+h1[name=effectivePrice].effectivePrice{
+  background-image: url(http://i.imgur.com/Fd7NROx.png);
+  padding: 5px;
+  text-align: left;
+  padding-left: 30px;
+  background-size: 14px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px 12px;
+  margin-top: 45px;
+}
+
+h1[name=discountedPrice].discountedPrice{
+  background-image: url(http://i.imgur.com/Fd7NROx.png);
+  padding: 5px;
+  text-align: left;
+  padding-left: 30px;
+  background-size: 14px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px 12px;
+  margin-top: 45px;
 }
 
 .footer {
