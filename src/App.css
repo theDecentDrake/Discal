@@ -30,8 +30,9 @@ h1[name=total].totalRupee{
   background-size: 14px 16px;
   background-repeat: no-repeat;
   background-position: 8px 12px;
-  margin-top: 45px;
+  margin-top: 60px;
 }
+
 
 h1[name=effectivePrice].effectivePrice{
   background-image: url(http://i.imgur.com/Fd7NROx.png);
@@ -41,7 +42,7 @@ h1[name=effectivePrice].effectivePrice{
   background-size: 14px 16px;
   background-repeat: no-repeat;
   background-position: 8px 12px;
-  margin-top: 45px;
+  margin-top: 35px;
 }
 
 h1[name=discountedPrice].discountedPrice{

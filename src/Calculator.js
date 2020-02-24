@@ -151,7 +151,7 @@ export class Calculator extends React.Component {
               }
               <Row>
                 <Col xs={8}><p style={{textAlign: 'left', fontSize: '30px', fontWeight: 'bold', marginTop: '35px'}}>Total Effective Price:</p></Col>
-                <Col xs={4}><h1 name='total' className='calcInput columnFont effectivePrice'>{parseInt(newCosts) && parseInt(newCosts.map(x => sum2 += x ? parseInt(x) : 0)) && parseInt(sum2) || 0}</h1></Col>
+                <Col xs={4}><h1 name='effectivePrice' className='calcInput columnFont effectivePrice'>{parseInt(newCosts) && parseInt(newCosts.map(x => sum2 += x ? parseInt(x) : 0)) && parseInt(sum2) || 0}</h1></Col>
               </Row>
             </Col>
             <Col xs={12}>
